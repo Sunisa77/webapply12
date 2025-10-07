@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 app = Flask(__name__)
-
+model = joblib.load("iot.pkl")
 @app.route("/")
 def main():
     return render_template("index.html")
