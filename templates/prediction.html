@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+    This is a predict page
+{% endblock %}
+
+{% block content %}
+<center>
+    <br>
+    <br>
+<div class="card shadow-lg p-4 border-0 mb-4" style="width: 60%; max-width: 600px; background-color: #f8f9fa;">
+    <h1 class="mb-3">ทำนาย Fan_actuator_ON</h1>
+    <p class="text-muted">กรอกค่าจากเซ็นเซอร์ 6 ตัว: <span style="color: #d63384;">temperature, humidity, water_level, N, P, K</span></p>
+    <form action="{{ url_for('predic_page') }}" method="POST">
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label for="temperature" class="form-label">temperature</label>
+                <input type="text" class="form-control" id="temperature" name="temperature" placeholder="เช่น 34.5">
+            </div>
+            <div class="col-md-6 mb-2">
+                <label for="humidity" class="form-label">humidity</label>
+                <select class="form-select" id="humidity" name="humidity">
+                    <option value="">0-100</option>
+                    {% for i in range(0, 101, 10) %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label for="water_level" class="form-label">water_level</label>
+                <input type="text" class="form-control" id="water_level" name="water_level" placeholder="0-100">
+            </div>
+            <div class="col-md-6 mb-2">
+                <label for="N" class="form-label">N</label>
+                <input type="text" class="form-control" id="N" name="N" placeholder="เช่น 150">
+            </div>
+    
+            <div class="col-md-6 mb-2">
+                <label for="P" class="form-label">P</label>
+                <input type="text" class="form-control" id="P" name="P" placeholder="เช่น 150">
+            </div>
+            <div class="col-md-6 mb-2">
+                <label for="K" class="form-label">K</label>
+                <input type="text" class="form-control" id="K" name="K" placeholder="เช่น 150">
+            </div>
+        
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Predict</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+        </div>
+    </form>
+</div>
+</center>
+{% endblock %}
